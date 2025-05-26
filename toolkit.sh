@@ -66,7 +66,23 @@ opcion3() {
         echo "Archivo más pesado: $ruta ($peso_humano)"
     fi
 
+}
 
+opcion4() {
+    local ruta
+    local palabra
+    read -p "Ingrese la palabra a buscar: " palabra
+    read -p "Ingrese la ruta de la carpeta: " ruta
+
+    if [ ! -d "$ruta" ]; then
+        echo "La ruta no existe o no es un directorio"
+        return
+    fi
+
+    echo "Buscando '$palabra' en los archivos de la carpeta '$ruta'"
+#el grep es el comando de busqueda, -r busca recusriivamente en los subdirectorios, -n la linea y -w busca  la palabra
+    grep -rnw "$ruta" -e "$palabra"
+    #el -e $palabra, es la palabra a buscar
 }
 
 clear
@@ -76,6 +92,7 @@ clear
     echo "1) opcion 1"
     echo "2) opcion 2"
     echo "3) opcion 3"
+    echo "4) opcion 4"
     echo "0) salir"
     echo "=================="
 
@@ -93,6 +110,9 @@ clear
             ;;
         3)
             opcion3
+            ;;
+        4) 
+            opcion4
             ;;
     esac
 
