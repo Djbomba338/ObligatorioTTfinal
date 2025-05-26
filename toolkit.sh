@@ -84,6 +84,22 @@ opcion4() {
     grep -rnw "$ruta" -e "$palabra"
     #el -e $palabra, es la palabra a buscar
 }
+opcion5() {
+    echo "Usuario actual: $USER"
+    echo "Hora de encendido de la PC: $(uptime -s)"
+    echo $(date +"Hoy es: %A %d %B")
+}
+
+opcion6() {
+    local url
+    read -p "Ingrese la url de una web: " url
+    echo "$url" > archivoweb.txt
+ }
+
+opcion7(){
+    ruta
+    read -p "ingrese una ruta: " ruta
+}
 
 clear
  while true; do
@@ -93,6 +109,9 @@ clear
     echo "2) opcion 2"
     echo "3) opcion 3"
     echo "4) opcion 4"
+    echo "5) opcion 5"
+    echo "6) opcion 6"
+    echo "7) opcion 7"
     echo "0) salir"
     echo "=================="
 
@@ -113,6 +132,15 @@ clear
             ;;
         4) 
             opcion4
+            ;;
+        5)
+            opcion5
+            ;;
+        6)
+            opcion6
+            ;;
+        7)
+            opcion7
             ;;
     esac
 
