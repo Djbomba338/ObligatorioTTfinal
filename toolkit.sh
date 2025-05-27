@@ -1,11 +1,16 @@
 #!/bin/bash
 ruta
 
-opcion1() {
+pedirRutaSiNecesario() {
 
     while [ ! -d "$ruta" ]; do
         read -p "ingrese la ruta del directorio: " ruta
-    done
+    done   
+}
+
+opcion1() {
+
+    pedirRutaSiNecesario
 
     local total_files=$(find $ruta -type f  | wc -l)
     local this_directory_files=$(find $ruta -maxdepth 1 -type f | wc -l)
@@ -25,9 +30,8 @@ opcion1() {
 
 opcion2() {
 
-    while [ ! -d "$ruta" ]; do
-        read -p "ingrese la ruta del directorio: " ruta
-    done
+    pedirRutaSiNecesario
+
     archivos=$(find "$ruta" -maxdepth 1 -type f)
     for archivo in $archivos; do
         mv "$archivo" "${archivo}bck"
@@ -57,9 +61,7 @@ opcion3() {
 
 opcion4() {
 
-    while [ ! -d "$ruta" ]; do
-        read -p "ingrese la ruta del directorio: " ruta
-    done
+    pedirRutaSiNecesario
 
     local palabra
     read -p "Ingrese la palabra a buscar: " palabra
