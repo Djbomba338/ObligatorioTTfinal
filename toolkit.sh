@@ -32,17 +32,16 @@ opcion2() {
 
     pedirRutaSiNecesario
 
-    archivos=$(find "$ruta" -maxdepth 1 -type f)
+    local archivos=$(find "$ruta" -maxdepth 1 -type f)
     for archivo in $archivos; do
         mv "$archivo" "${archivo}bck"
     done
 }
 
-# FALTA COMPLETAR Y MEJORAR MUCHO
 opcion3() {
     echo "======= Estado del disco ======="
-    espacio_disco_usado=$(df -kh . | tail -n 1 | awk '{print $3}')
-    espacio_disco_disponible=$(df -kh . | tail -n 1 | awk '{print $4}')
+    local espacio_disco_usado=$(df -h . | tail -n 1 | awk '{print $3}')
+    local espacio_disco_disponible=$(df -h . | tail -n 1 | awk '{print $4}')
     echo "Espacio usado en el disco: $espacio_disco_usado"
     echo "Espacio disponible en el disco: $espacio_disco_disponible"
 
