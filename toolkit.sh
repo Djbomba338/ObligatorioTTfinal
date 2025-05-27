@@ -72,23 +72,22 @@ opcion4() {
 opcion5() {
     echo "Usuario actual: $USER"
     echo "Hora de encendido de la PC: $(uptime -s)"
-    echo $(date +"Hoy es: %A %d %B")
+    date +"Hoy es: %A %d %B"
 }
 
 opcion6() {
     local url
     read -p "Ingrese la url de una web: " url
 
-    while [ ! -d "$ruta" ]; do
-        read -p "ingrese la ruta del directorio donde quiere guardar la web: " ruta
-    done
+    pedirRutaSiNecesario
 
     echo "$url" > "$ruta/archivoweb.txt"
  }
 
 opcion7(){
     echo "=======Ingresar Ruta======="
-    read -p "ingrese una ruta: " ruta
+    read -p "ingrese la ruta del directorio: " ruta
+    pedirRutaSiNecesario 
     echo "==========================="
 }
 
