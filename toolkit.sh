@@ -15,8 +15,8 @@ opcion1() {
     local total_files=$(find $ruta -type f  | wc -l)
     local this_directory_files=$(find $ruta -maxdepth 1 -type f | wc -l)
     local subdirectory_files=$(($total_files - $this_directory_files))
-    local larger_file=$(find -type f -printf "%s %p\n" | sort -nr | head -n 1 | cut -d' ' -f2- | xargs -r basename)
-    local smaller_file=$(find -type f -printf "%s %p\n" | sort -nr | tail -n 1 | cut -d' ' -f2- | xargs -r basename)
+    local larger_file=$(find $ruta -type f -printf "%s %p\n" | sort -nr | head -n 1 | cut -d' ' -f2- | xargs -r basename)
+    local smaller_file=$(find $ruta -type f -printf "%s %p\n" | sort -nr | tail -n 1 | cut -d' ' -f2- | xargs -r basename)
 
     echo "================"
     echo "Archivos en este directorio: $this_directory_files"
